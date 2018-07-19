@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.Design;
+using HotPytato.Input;
 
 namespace HotPytato
 {
     public class HotPytatoBackend
-    {  
-        public static void Init()
+    {
+		public static IServiceProvider PlatformServices { get => platformServices; }
+		private static readonly IServiceContainer platformServices = new ServiceContainer(); 
+        
+		public static void Init(IKeyboard keyboardService)
         {
-
+			platformServices.AddService(typeof(IKeyboard), keyboardService);
         }
     }
 }
